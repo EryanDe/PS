@@ -1,0 +1,26 @@
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('css/header.css')}}">
+{% endblock %}
+
+
+    <header>
+        <div class="container">
+            <div class="logo">
+    <a href="{{ path('app_accueil') }}">
+                    <img src="{{asset("assets/logo.svg")}}" alt="Logo">
+            </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ path('app_travail') }}">Travail</a></li>
+                    <li><a href="{{ path('app_sport') }}">Sport</a></li>
+                    <li><a href="{{ path('app_bien_etre') }}">Bien-être</a></li>
+                    <li><a href="{{ path('app_articles') }}">Articles</a></li>
+                </ul>
+            </nav>
+            <div class="profile-icon">
+            <img src="{{asset("assets/icon_personne.svg")}}" alt="Profile Icon">
+                
+            </div>
+        </div>
+    </header>

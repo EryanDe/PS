@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SportController!{% endblock %}
+
+{% block body %}
+{% include 'Composer/header.html.twig'%}
+
+{% if not app.user %}
+    <a href="{{ path('app_register') }}" class="btn btn-primary">Aller vers la page</a>
+{% endif %}
+
+
+{% endblock %}
