@@ -38,10 +38,10 @@ class Exercices
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $contenu_difficile_exercice = null;
 
-    #[ORM\ManyToOne(inversedBy: 'relation')]
+    #[ORM\ManyToOne(inversedBy: 'relation', cascade:  ["persist"])]
     private ?Protocoles $protocoles = null;
 
-    #[ORM\ManyToOne(inversedBy: 'relation')]
+    #[ORM\ManyToOne(inversedBy: 'relation', cascade:  ["persist"])]
     private ?Semaines $semaines = null;
 
     public function getId(): ?int
