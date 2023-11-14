@@ -4,4 +4,19 @@
 
 {% block body %}
 {% include 'Composer/header.html.twig'%}
+
+
+<h1>Tous les articles</h1>
+ 
+<div class="article-container">
+    {% for article in articles %}
+    <div class="article">  
+        <img src="{{ asset('assets/' ~ article.getImageArticle() ) }}" alt="Profile Icon">
+        <h3>{{ article.getTitreArticle() }}</h3>
+        <a href="{{ path('article', {'articleId': article.getId()}) }}" class="btn-primary">Voir plus</a>
+    </div>
+    {% endfor %}
+</div>
+
+
 {% endblock %}

@@ -1,9 +1,105 @@
 {% extends 'base.html.twig' %}
 
+
+
 {% block title %}Hello AccueilController!{% endblock %}
 
 {% block body %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('css/header.css')}}">
+{% endblock %}
+
 {% include 'Composer/header.html.twig'%}
+
+
+<div class="all">
+    <div class="banniere">
+        <img class="ban" src="{{ asset("assets/Rectangle3.png") }}" alt="Prevention sport banniere">
+        <div class="overlay-content">
+            <h1>Prévention Sport</h1>
+            <p class="para_banniere">Votre texte ici. Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+            <button onclick="location.href='#'">Je découvre</button>
+        </div>
+    </div>
+</div>
+
+
+    <div class="proto_accueil">
+        <h2>NOS PROTOCOLES</h2>
+    </div>
+</div>
+
+<div class ="protocole_container">
+<div class="carousel protocole">
+    <div class="carousel-inner">
+        <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
+        <div class="carousel-item">
+            <img src="{{asset("assets/imagetravail.jpg")}}" alt="Logo">
+        </div>
+        <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
+        <div class="carousel-item">
+             <img src="{{asset("assets/imagetravail.png")}}" alt="Logo">
+        </div>
+        <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
+        <div class="carousel-item">
+             <img src="{{asset("assets/travail3.jpg")}}" alt="Logo">
+        </div>
+        <label for="carousel-3" class="carousel-control prev control-1">‹</label>
+        <label for="carousel-2" class="carousel-control next control-1">›</label>
+        <label for="carousel-1" class="carousel-control prev control-2">‹</label>
+        <label for="carousel-3" class="carousel-control next control-2">›</label>
+        <label for="carousel-2" class="carousel-control prev control-3">‹</label>
+        <label for="carousel-1" class="carousel-control next control-3">›</label>
+        <ol class="carousel-indicators">
+            <li>
+                <label for="carousel-1" class="carousel-bullet">•</label>
+            </li>
+            <li>
+                <label for="carousel-2" class="carousel-bullet">•</label>
+            </li>
+            <li>
+                <label for="carousel-3" class="carousel-bullet">•</label>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="protocole">
+<h3>PROTOCOLE SPORTIF</h3>
+<p>Je veux suivre le protocole sportif</p>
+<a href="{{ path('protocole', {'protocolId': 4}) }}" class="btn-primary btn-abonnement">C'est parti</a>
+</div>
+
+</div>
+
+
+<div class="protocole">
+<h3>PROTOCOLE TRAVAIL</h3>
+<p>Je veux suivre le protocole travail</p>
+<a href="{{ path('protocole', {'protocolId': 5}) }}" class="btn-primary btn-abonnement">C'est parti</a>
+</div>
+
+
+
+
+
+<div class="arcticle_accueil">
+        <h2>ARTICLES</h2>
+    </div>
+
+
+
+
+    <div class="article-container">
+    {% for article in articles %}
+    <div class="article">  
+        <img src="{{ asset('assets/' ~ article.getImageArticle() ) }}" alt="Profile Icon">
+        <h3>{{ article.getTitreArticle() }}</h3>
+        <a href="{{ path('article', {'articleId': article.getId()}) }}" class="btn-primary">Voir plus</a>
+    </div>
+    {% endfor %}
+</div>
+
 
 {% endblock %}

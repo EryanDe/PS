@@ -1,6 +1,3 @@
-{% block stylesheets %}
-<link rel="stylesheet" href="{{asset('css/header.css')}}">
-{% endblock %}
 
 
     <header>
@@ -12,8 +9,9 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="{{ path('app_travail') }}">Travail</a></li>
-                    <li><a href="{{ path('app_sport') }}">Sport</a></li>
+                    <li><a href="{{ path('protocole', {'protocolId': 5}) }}">Travail</a></li>
+                    
+                    <li><a href="{{ path('protocole', {'protocolId': 4}) }}">Sport</a></li>
                     <li><a href="{{ path('app_bien_etre') }}">Bien-être</a></li>
                     <li><a href="{{ path('app_articles') }}">Articles</a></li>
                 </ul>

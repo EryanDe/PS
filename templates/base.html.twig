@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
      
         {% block stylesheets %}
+        <link rel="stylesheet" href="{{asset('css/header.css')}}">
         {% endblock %}
 
         {% block javascripts %}
+        <link rel="javascripts" href="{{asset('JS/script.js')}}">
         {% endblock %}
     </head>
     <body>

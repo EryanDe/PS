@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'days_oneregular';
+    src: url('assets/fonts/daysone-regular-webfont.woff2') format('woff2'),
+         url('assets/fonts/daysone-regular-webfont.woff') format('woff'),
+         url('assets/fonts/daysone-regular-webfont.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -14,6 +24,10 @@ header {
     color: #000000;
     border: 2px solid #555;
     padding-right: 5%;
+}
+
+h1, h2, h3, nav a {
+    font-family: 'days_oneregular', sans-serif;
 }
 
 .container {
@@ -57,4 +71,323 @@ nav ul li a {
     display: flex;
     height: 4vh;
    
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: #FF4D00;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .btn-primary:hover {
+    background-color: #FF4D00;
+  }
+
+img.ban {
+    width: 100%;
+}
+
+/* debut carousel */
+.carousel {
+    position: relative;
+    margin-top: 26px;
+}
+
+.carousel-inner {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-open:checked + .carousel-item {
+    position: static;
+    opacity: 100;
+}
+
+.carousel-item {
+    position: absolute;
+    opacity: 0;
+    -webkit-transition: opacity 0.6s ease-out;
+    transition: opacity 0.6s ease-out;
+}
+
+.carousel-item img {
+    width: 100%;
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+.carousel-control {
+    background: rgba(0, 0, 0, 0.28);
+    border-radius: 50%;
+    color: #fff;
+    cursor: pointer;
+    display: none;
+    font-size: 40px;
+    height: 40px;
+    line-height: 35px;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translate(0, -50%);
+    cursor: pointer;
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    text-align: center;
+    width: 40px;
+    z-index: 10;
+}
+
+.carousel-control.prev {
+    left: 2%;
+}
+
+.carousel-control.next {
+    right: 2%;
+}
+
+.carousel-control:hover {
+    background: rgba(0, 0, 0, 0.8);
+    color: #aaaaaa;
+}
+
+#carousel-1:checked ~ .control-1,
+#carousel-2:checked ~ .control-2,
+#carousel-3:checked ~ .control-3 {
+    display: block;
+}
+
+.carousel-indicators {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    bottom: 2%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+}
+
+.carousel-indicators li {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.carousel-bullet {
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 35px;
+}
+
+.carousel-bullet:hover {
+    color: #aaaaaa;
+}
+
+#carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
+#carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
+#carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
+    color: #428bca;
+}
+
+#title {
+    width: 100%;
+    position: absolute;
+    padding: 0px;
+    margin: 0px auto;
+    text-align: center;
+    font-size: 27px;
+    color: rgba(255, 255, 255, 1);
+    
+    z-index: 9999;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.33), -1px 0px 2px rgba(255, 255, 255, 0);
+}
+  
+/*2column protocole*/
+.protocole_container {
+    display:flex;
+    width: 70%;
+    margin: auto;
+
+}
+
+.protocole {
+    flex: 1;
+    padding: 20px;
+    text-align: center; /* Centrer le contenu, y compris le bouton */
+}
+.protocole h3 {
+    margin-top: 15%;
+}
+.protocole p, .protocole h3{
+    text-align: center;
+}
+
+.btn-abonnement{
+    align-items: center;
+}
+
+
+
+/*banniere accueil*/
+.all {
+    /* Styles pour .all (ou le conteneur parent) */
+    position: relative;
+    /* Ajoutez d'autres styles au besoin */
+}
+
+.banniere {
+    position: relative;
+    /* Autres styles de .banniere */
+}
+
+.ban {
+    width: 100%;
+    height: auto;
+    /* Autres styles de .ban */
+}
+
+.overlay-content {
+    position: absolute;
+    top: 40%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+  
+    color: #fff; /* Couleur du texte */
+    
+    padding: 20px; /* Espace autour du contenu */
+    border-radius: 5px; /* Coins arrondis */
+}
+
+p.para_banniere{
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+h1, p, button {
+    margin: 0; /* Réinitialisez les marges par défaut pour les éléments */
+    /* Ajoutez d'autres styles au besoin */
+}
+
+button {
+    width: 35%;
+    padding: 10px 20px; /* Ajoutez des styles de bouton */
+    background-color: #FF4D00; /* Couleur de fond du bouton */
+    color: #ffffff; /* Couleur du texte du bouton */
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #FF6600; /* Couleur de fond du bouton au survol */
+}
+
+h2{
+    
+   
+    color: #3C6AC0;
+    text-align: center;
+    margin-top: 5%;
+}
+
+
+
+.article-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width : 80%;
+    margin : auto;
+    margin-top : 30px;
+}
+
+.article {
+    flex-basis: calc(30% - 10px); /* Pour créer trois colonnes par ligne avec un espacement de 20px entre elles */
+    margin-bottom: 20px; /* Espacement entre les lignes de blocs */
+    padding: 20px;
+    /* border: 1px solid #ccc; Facultatif : ajoute une bordure autour de chaque bloc */
+    text-align: center; /* Centre le contenu horizontalement */
+}
+
+/* Pour aligner verticalement le contenu dans chaque bloc */
+.article h3,
+.article img,
+.article a {
+    margin: 0;
+    margin-bottom : 12px;
+}
+
+/* Style supplémentaire pour l'image */
+.article img {
+    max-width: 100%; /* Assurez-vous que l'image reste dans la largeur du bloc */
+    height: auto; /* Maintient le ratio hauteur-largeur de l'image */
+}
+
+
+
+
+
+
+
+
+
+
+.article-details {
+    max-width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.article-details img {
+    width: 100%;
+    max-width: 100%;
+    max-height: 500px; /* Réglez la hauteur maximale souhaitée */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.article-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.article-content {
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 20px 0;
+}
+
+.article-author-source {
+    font-size: 16px;
+    color: #888;
+    margin: 10px 0;
+}
+
+h1 {
+    color: #3C6AC0;
+    text-align: center;
+    margin-top: 5%;
+
+}
+
+.banniere h1{
+    color: #ffffff;
+    text-align: left;
 }
