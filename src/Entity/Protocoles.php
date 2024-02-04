@@ -31,9 +31,13 @@ class Protocoles
     #[ORM\OneToMany(mappedBy: 'protocoles', targetEntity: exercices::class)]
     private Collection $relation;
 
+    #[ORM\OneToMany(mappedBy: 'relation', targetEntity: Utilisateurs::class)]
+    private Collection $utilisateurs;
+
     public function __construct()
     {
         $this->relation = new ArrayCollection();
+        $this->utilisateurs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -117,5 +121,40 @@ class Protocoles
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Utilisateurs>
+     */
+    public function getUtilisateurs(): Collection
+    {
+        return $this->utilisateurs;
+    }
+
+    public function addUtilisateur(Utilisateurs $utilisateur): static
+    {
+        if (!$this->utilisateurs->contains($utilisateur)) {
+            $this->utilisateurs->add($utilisateur);
+            $utilisateur->setRelation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUtilisateur(Utilisateurs $utilisateur): static
+    {
+        if ($this->utilisateurs->removeElement($utilisateur)) {
+            // set the owning side to null (unless already changed)
+            if ($utilisateur->getRelation() === $this) {
+                $utilisateur->setRelation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nom_protocole;
     }
 }

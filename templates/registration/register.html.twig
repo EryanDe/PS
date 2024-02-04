@@ -7,20 +7,28 @@
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
 
-    <h1>Bienvenue, veuillez remplir <br> ces champs afin de vous inscrire</h1>
+    <h1>Bienvenue, veuillez remplir ces champs afin de vous inscrire</h1>
 
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-        {# {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.nom_utilisateur) }}
-        {{ form_row(registrationForm.prenom_utilisateur) }}
-        {{ form_row(registrationForm.agreeTerms) }} #}
+    {{ form_row(registrationForm.email) }}
+    {{ form_row(registrationForm.plainPassword, {
+        label: 'Password'
+    }) }}
+    {{ form_row(registrationForm.nom_utilisateur) }}
+    {{ form_row(registrationForm.prenom_utilisateur) }}
+    {{ form_row(registrationForm.telephone_utilisateur) }}
+    {{ form_row(registrationForm.numero_rue_utilisateur) }}
+    {{ form_row(registrationForm.rue_utilisateur) }}
+    {{ form_row(registrationForm.ville_utilisateur) }}
+    {{ form_row(registrationForm.code_postal_utilisateur) }}
+    {{ form_row(registrationForm.pays_utilisateur) }}
+    {{ form_row(registrationForm.agreeTerms) }}
+    {{ form_row(registrationForm.relation) }} 
 
-        <button type="submit" class="btn">Register</button>
+    <button type="submit" class="btn">Register</button>
+    
     {{ form_end(registrationForm) }}
-
+    
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Utilisateurs;
+use App\Entity\Protocoles;
 use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
 use App\Security\UtilisateursAuthenticator;
@@ -35,6 +36,10 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $selectedProtocole = $form->get('relation')->getData();
+            $user->setRelation($selectedProtocole); // Utilisez la méthode setRelation pour définir la relation
+
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(

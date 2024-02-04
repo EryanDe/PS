@@ -6,6 +6,12 @@ use App\Entity\Semaines;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+use Doctrine\ORM\Query;
+
+use Doctrine\ORM\Query\Expr\Join;
+
+
+
 /**
  * @extends ServiceEntityRepository<Semaines>
  *
@@ -19,6 +25,15 @@ class SemainesRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Semaines::class);
+    }
+    public function getSemainesForProtocolQuery($protocolId): Query
+    {
+        return $this->createQueryBuilder('s')
+            ->leftJoin('s.exercices', 'e')
+            ->join('e.protocole', 'p')
+            ->where('p.id = :protocolId')
+            ->setParameter('protocolId', $protocolId)
+            ->getQuery();
     }
 
 //    /**

@@ -120,5 +120,9 @@ class Semaines
     }
 
 
+    public function __toString()
+    {
+        return $this->titre_semaine;
+    }
 
 }

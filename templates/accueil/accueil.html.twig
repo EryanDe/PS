@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="{{asset('css/header.css')}}">
 {% endblock %}
 
-{% include 'Composer/header.html.twig'%}
+
 
 
 <div class="all">
@@ -87,14 +87,11 @@
 <div class="arcticle_accueil">
         <h2>ARTICLES</h2>
     </div>
-
-
-
-
-    <div class="article-container">
+    
+     <div class="article-container">
     {% for article in articles %}
     <div class="article">  
-        <img src="{{ asset('assets/' ~ article.getImageArticle() ) }}" alt="Profile Icon">
+        <img src="{{ asset('assets/' ~ article.getImageArticle() ) }}" alt="Profile Icon" class="list_article_img">
         <h3>{{ article.getTitreArticle() }}</h3>
         <a href="{{ path('article', {'articleId': article.getId()}) }}" class="btn-primary">Voir plus</a>
     </div>

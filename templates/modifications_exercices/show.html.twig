@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Exercices{% endblock %}
+
+{% block body %}
+    <h1>Exercices</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ exercice.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre_exercice</th>
+                <td>{{ exercice.titreExercice }}</td>
+            </tr>
+            <tr>
+                <th>Duree_exercice</th>
+                <td>{{ exercice.dureeExercice }}</td>
+            </tr>
+            <tr>
+                <th>Frequence_exercice</th>
+                <td>{{ exercice.frequenceExercice }}</td>
+            </tr>
+            <tr>
+                <th>Etat_exercice</th>
+                <td>{{ exercice.etatExercice ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Description_exercice</th>
+                <td>{{ exercice.descriptionExercice }}</td>
+            </tr>
+            <tr>
+                <th>Materiel_exercice</th>
+                <td>{{ exercice.materielExercice }}</td>
+            </tr>
+            <tr>
+                <th>Contenu_facile_exercice</th>
+                <td>{{ exercice.contenuFacileExercice }}</td>
+            </tr>
+            <tr>
+                <th>Contenu_difficile_exercice</th>
+                <td>{{ exercice.contenuDifficileExercice }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_modifications_exercices_index') }}">back to list</a>
+
+    <a href="{{ path('app_modifications_exercices_edit', {'id': exercice.id}) }}">edit</a>
+
+    {{ include('modifications_exercices/_delete_form.html.twig') }}
+{% endblock %}

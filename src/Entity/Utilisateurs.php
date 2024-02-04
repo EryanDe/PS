@@ -56,6 +56,9 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
+    #[ORM\ManyToOne(inversedBy: 'utilisateurs')]
+    private ?Protocoles $relation = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -142,13 +145,19 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->prenom_utilisateur;
     }
-
-    public function setPrenomUtilisateur(string $prenom_utilisateur): static
+    
+    public function setPrenomUtilisateur(?string $prenom_utilisateur): static
     {
         $this->prenom_utilisateur = $prenom_utilisateur;
-
+    
         return $this;
     }
+
+    
+
+
+
+
 
     public function getNumeroRueUtilisateur(): ?int
     {
@@ -230,6 +239,18 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): static
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    public function getRelation(): ?protocoles
+    {
+        return $this->relation;
+    }
+
+    public function setRelation(?protocoles $relation): static
+    {
+        $this->relation = $relation;
 
         return $this;
     }

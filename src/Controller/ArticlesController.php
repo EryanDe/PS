@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Articles;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,7 +35,4 @@ class ArticlesController extends AbstractController
             'article' => $article, // Ajout de la variable article
         ]);
     }
-
-
-
 }

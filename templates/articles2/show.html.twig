@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+    <h1>Articles</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ article.id }}</td>
+            </tr>
+            <tr>
+                <th>Image_article</th>
+                <td>{{ article.imageArticle }}</td>
+            </tr>
+            <tr>
+                <th>Titre_article</th>
+                <td>{{ article.titreArticle }}</td>
+            </tr>
+            <tr>
+                <th>Contenu_article</th>
+                <td>{{ article.contenuArticle }}</td>
+            </tr>
+            <tr>
+                <th>Date_creation_article</th>
+                <td>{{ article.dateCreationArticle ? article.dateCreationArticle|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Source_article</th>
+                <td>{{ article.sourceArticle }}</td>
+            </tr>
+            <tr>
+                <th>Auteur_article</th>
+                <td>{{ article.auteurArticle }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_articles2_index') }}">back to list</a>
+
+    <a href="{{ path('app_articles2_edit', {'id': article.id}) }}">edit</a>
+
+    {{ include('articles2/_delete_form.html.twig') }}
+{% endblock %}

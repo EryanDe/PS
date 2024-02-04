@@ -7,38 +7,38 @@
 {% block title %}Hello SportController!{% endblock %}
 
 {% block body %}
-{% include 'Composer/header.html.twig'%}
-
-{% if not app.user %}
-    <a href="{{ path('app_register') }}" class="btn-primary">S'abonner</a>
-   
-{% endif %}
-
-
-
-
 
 <h1>Protocole {{protocole.getNomProtocole() }}</h1> 
-<p>{{protocole.getDescriptionProtocole() }} </p> 
-<p>il coûte {{protocole.getPrixProtocole ()}} €</p>
 
-<h3>Liste des Exercices liés au Protocole </h3>
-<ul>
-    {% for exercice in exercices %}
-        
-       {% set semaine = exercice.getSemaines() %}
-    {% if semaine is not null %}
-        <h3>Semaine associée</h3>
-        <p>Titre: {{ semaine.getTitreSemaine() }}</p>
-        <p>Date de début: {{ semaine.getDateDebutSemaine()|date('d/m/Y') }}</p>
-        <!-- Ajoutez d'autres champs de la semaine si nécessaire -->
-    {% endif %}
-        <p>{{ exercice.getTitreExercice() }}</p>
-        <p>{{ exercice.getDureeExercice() }} min</p>
-        <p>{{ exercice.getFrequenceExercice() }} fois</p>
-        <p>Voici la description de l'exexercice : {{ exercice.getDescriptionExercice() }} </p>
-        <!-- A<>utez d'autres champs de l'exercice si nécessaire -->
-    {% endfor %}
-</ul>
+{% if not app.user %}
+    <p>Vous n'êtes pas abonné au protocole, veuillez souscrire : </p>
+    <a href="{{ path('app_register') }}" class="btn-primary">S'abonner</a>
+{% endif %}
 
+<h3>DESCRIPTION</h3>
+<p>{{ protocole.getDescriptionProtocole() }} </p> 
+<h3>PRIX</h3>
+<p>Il coûte {{ protocole.getPrixProtocole() }} €</p>
+
+{% if app.user %}
+    <h3>SEMAINE ASSOCIEES</h3>
+    <ul>
+        {% for exercice in exercices %}
+            {% set semaine = exercice.getSemaines() %}
+            {% if semaine is not null %}
+                <h4>{{ semaine.getTitreSemaine() }}</h4>
+                <p>Date de début: {{ semaine.getDateDebutSemaine()|date('d/m/Y') }}</p>
+             {% endif %}
+            <p class="list_exercice"><b>Exercices liés à la semaine</b></p>
+            <p><b>Titre Exercice :</b> {{ exercice.getTitreExercice() }}</p>
+            <p><b>Durée Exercice :</b>{{ exercice.getDureeExercice() }} min</p>
+            <p><b>Fréquence Exercice :</b>{{ exercice.getFrequenceExercice() }} fois</p>
+            <p><b>Description :</b> {{ exercice.getDescriptionExercice() }} </p>
+            <video  controls loop>
+                <source src="{{ asset('assets/' ~ exercice.getContenuFacileExercice() )}}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        {% endfor %}
+    </ul>
+{% endif %}
 {% endblock %}

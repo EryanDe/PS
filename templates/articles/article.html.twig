@@ -3,15 +3,13 @@
 {% block title %}Hello ArticlesController!{% endblock %}
 
 {% block body %}
-{% include 'Composer/header.html.twig'%}
 
-
-
- 
-<h1>Article titre {{article.getTitreArticle() }}</h1>
- 
 <div class="article-details">
+
+<div class="image-container">
     <img src="{{ asset('assets/' ~ article.getImageArticle() )}}" alt="Profile Icon">
+</div>
+
     <h1 class="article-title">Article titre {{ article.getTitreArticle() }}</h1>
     <p class="article-content">{{ article.getContenuArticle() }}</p>
     <p class="article-author-source">{{ article.getAuteurArticle() }} - {{ article.getSourceArticle() }}</p>

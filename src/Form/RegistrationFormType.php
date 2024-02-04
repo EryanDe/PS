@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Utilisateurs;
+use App\Entity\Protocoles;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -50,10 +52,15 @@ class RegistrationFormType extends AbstractType
                         'message' => 'You should agree to our terms.',
                     ]),
                 ],
+                
             ])
-        ;
+            ->add('relation', EntityType::class, [
+                'class' => Protocoles::class,
+                'choice_label' => 'nom_protocole', // Le champ à afficher dans la liste déroulante
+                'required' => false, // Si vous souhaitez le rendre facultatif
+            ]);
+            
     }
-
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

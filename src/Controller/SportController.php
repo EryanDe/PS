@@ -5,11 +5,9 @@ namespace App\Controller;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Protocoles;
 use App\Entity\Exercices;
-
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
 
 class SportController extends AbstractController
 {
@@ -20,10 +18,7 @@ class SportController extends AbstractController
             'controller_name' => 'SportController',
         ]);
     }
-//rajout code nada
-   
 
-    
     #[Route('/protocoles/{protocolId}', name: 'protocole')]
     public function showExercicesForProtocol(ManagerRegistry $mr, $protocolId): Response
     {
@@ -37,14 +32,10 @@ class SportController extends AbstractController
     
         // Récupérez tous les exercices liés à ce protocole
         $exercices = $protocole->getRelation();
-    
- 
         return $this->render('protocoles/index.html.twig', [
             'exercices' => $exercices,
             'protocole' => $protocole, // Ajout de la variable protocole
-            
         ]);
     }
-
 }
 
