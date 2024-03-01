@@ -254,4 +254,30 @@ class Utilisateurs implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+
+    #[ORM\Column(length: 255)]
+    private ?string $stripe_CustomerId = null;
+
+    private $stripeCustomerId;
+
+    // Getter et Setter pour stripeCustomerId
+
+    public function getStripeCustomerId(): ?string
+    {
+        return $this->stripeCustomerId;
+    }
+
+    public function setStripeCustomerId(?string $stripeCustomerId): self
+    {
+        $this->stripeCustomerId = $stripeCustomerId;
+
+        return $this;
+    }
+
+    public function isRegisteredToProtocole(Protocoles $protocole): bool
+{
+    return $this->relation !== null && $this->relation->getId() === $protocole->getId();
+}
+
 }

@@ -1,11 +1,26 @@
-{% extends 'base.html.twig' %}
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{asset('css/header.css')}}">
+{% endblock %}
 
-{% block title %}Exercices{% endblock %}
+{% block javascripts %}
+        <script src="{{asset('JS/script.js')}}"> </script>
+{% endblock %}
 
 {% block body %}
-    <h1>Exercices</h1>
+<div class="livebar">
+        <p><a href="{{ path('app_accueil') }}" target ="blank">Accéder au site</a></p>
+</div>
 
-    <table class="table">
+<div class="admin-container">
+    <div class="admin-dashboard-header">
+        <h1><a href="{{ path('app_admin') }}">Tableau de bord</a></h1>
+</div>
+   <div class="admin-detail-container">
+    <div class="admin-detail-header">
+        <h1>Détails de l'exercice</h1>
+    </div>
+
+    <table class="admin-detail-table">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -46,9 +61,10 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_modifications_exercices_index') }}">back to list</a>
-
-    <a href="{{ path('app_modifications_exercices_edit', {'id': exercice.id}) }}">edit</a>
-
-    {{ include('modifications_exercices/_delete_form.html.twig') }}
+    <div class="admin-detail-actions">
+        <a href="{{ path('app_modifications_exercices_index') }}">Retour à la liste</a>
+        <a href="{{ path('app_modifications_exercices_edit', {'id': exercice.id}) }}">Modifier</a>
+        {{ include('modifications_exercices/_delete_form.html.twig') }}
+    </div>
+</div>
 {% endblock %}

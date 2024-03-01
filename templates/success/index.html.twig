@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SuccessController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Commande confirmée ✅</h1>
+    <img class="ban" src="{{ asset("assets/success_payment.jpg") }}" alt="paiment réussi">
+    <h2>Bonjour {{ app.user.PrenomUtilisateur }} !</h2>
+   <p style="text-align : center;">Merci pour votre paiement et inscription.<br>Vous pouvez maintenant accéder à votre procole à tout moment en vous connectant.</p><br>
+ <p style = "text-align : center;">
+ <a href="{{ path('protocole', {'protocolId': app.user.relation.id}) }}">
+    <button>Accéder à mon protocole</button>
+</a>
+</p>
+
+
+</div>
+{% endblock %}

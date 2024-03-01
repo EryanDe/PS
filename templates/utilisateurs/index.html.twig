@@ -1,0 +1,61 @@
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{asset('css/header.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+        <script src="{{asset('JS/script.js')}}"> </script>
+{% endblock %}
+
+{% block body %}
+<div class="livebar">
+        <p><a href="{{ path('app_accueil') }}" target ="blank">Accéder au site</a></p>
+</div>
+
+<div class="admin-container">
+    <div class="admin-dashboard-header">
+        <h1><a href="{{ path('app_admin') }}">Tableau de bord</a></h1>
+</div>
+    <div class="admin-formview-container">
+    
+
+    <h2>Index des Utilisateurs</h2>
+    <a href="{{ path('app_utilisateurs_new') }}" class="admin-formview-create-new-button">+</a>
+    <table class="admin-formview-table">
+        <thead>
+            <tr>
+                <th>Nom_utilisateur</th>
+                <th>Prenom_utilisateur</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Ville_utilisateur</th>
+                <th>Pays_utilisateur</th>
+                <th>Telephone_utilisateur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for utilisateur in utilisateurs %}
+            <tr>
+                <td>{{ utilisateur.nomUtilisateur }}</td>
+                <td>{{ utilisateur.prenomUtilisateur }}</td>
+                <td>{{ utilisateur.email }}</td>
+                <td>{{ utilisateur.roles ? utilisateur.roles|join(', ') : '' }}</td>
+                <td>{{ utilisateur.villeUtilisateur }}</td>
+                <td>{{ utilisateur.paysUtilisateur }}</td>
+                <td>{{ utilisateur.telephoneUtilisateur }}</td>
+                <td class="admin-formview-action-buttons">
+                    <a href="{{ path('app_utilisateurs_show', {'id': utilisateur.id}) }}">Afficher</a>
+                    <a href="{{ path('app_utilisateurs_edit', {'id': utilisateur.id}) }}">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+</div>
+{% endblock %}

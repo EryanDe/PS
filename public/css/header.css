@@ -11,7 +11,6 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    text-align: center;
 }
 
 header {
@@ -21,9 +20,9 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    
     color: #000000;
-    padding-right: 5%;
+   
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajoutez cette ligne pour l'ombre */
 }
 
@@ -33,9 +32,18 @@ h1, h2, h3, h4, nav a {
     
 }
 
+h3{
+    color: white;
+    
+}
+
 h1{
     font-family: 'days_oneregular', sans-serif;
     margin-bottom : 2% !important;
+}
+
+.texteblanc{
+color: white;
 }
 
 .container {
@@ -46,9 +54,8 @@ h1{
     justify-content: space-between; 
 }
 
-.logo img {
-    margin-left: 5%;
-    height: 10vh;
+.logo {
+    margin-left: 2%;
 }
 nav {
     width: 100%;
@@ -91,7 +98,7 @@ nav ul li a {
     background-color: #FF4D00;
     color: #ffffff;
     border: none;
-    border-radius: 5px;
+    border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-top: 2%;
@@ -100,117 +107,58 @@ nav ul li a {
     margin-right: auto;
   }
   
-  .btn-primary:hover {
-    background-color: #FF4D00;
-  }
+ 
 
 img.ban {
     width: 100%;
 }
 
-/* debut carousel */
+
+/* debut code carousel page d'accueil */
 .carousel {
     position: relative;
-    margin-top: 26px;
+    width: 50%; 
+    margin-top: 5%;
+}
+img.border_rounded {
+    border-radius: 25px;
 }
 
-.carousel-inner {
-    position: relative;
-    overflow: hidden;
+.carousel img {
     width: 100%;
-}
-
-.carousel-open:checked + .carousel-item {
-    position: static;
-    opacity: 100;
-}
-
-.carousel-item {
-    position: absolute;
-    opacity: 0;
-    -webkit-transition: opacity 0.6s ease-out;
-    transition: opacity 0.6s ease-out;
-}
-
-.carousel-item img {
-    width: 100%;
-    display: block;
-    height: auto;
-    max-width: 100%;
-}
-
-.carousel-control {
-    background: rgba(0, 0, 0, 0.28);
-    border-radius: 50%;
-    color: #fff;
-    cursor: pointer;
-    display: none;
-    font-size: 40px;
-    height: 40px;
-    line-height: 35px;
-    position: absolute;
-    top: 50%;
-    -webkit-transform: translate(0, -50%);
-    cursor: pointer;
-    -ms-transform: translate(0, -50%);
-    transform: translate(0, -50%);
-    text-align: center;
-    width: 40px;
-    z-index: 10;
-}
-
-.carousel-control.prev {
-    left: 2%;
-}
-
-.carousel-control.next {
-    right: 2%;
-}
-
-.carousel-control:hover {
-    background: rgba(0, 0, 0, 0.8);
-    color: #aaaaaa;
-}
-
-#carousel-1:checked ~ .control-1,
-#carousel-2:checked ~ .control-2,
-#carousel-3:checked ~ .control-3 {
-    display: block;
-}
-
-.carousel-indicators {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    bottom: 2%;
+    display: none; /* Cache toutes les images par défaut */
+    top: 0;
     left: 0;
-    right: 0;
-    text-align: center;
-    z-index: 10;
+    
+    position: relative;
+    z-index: 0; /* Le z-index le plus bas */
 }
 
-.carousel-indicators li {
-    display: inline-block;
-    margin: 0 5px;
+.carousel img.active {
+    display: block; /* Affiche uniquement l'image active */
 }
 
-.carousel-bullet {
-    color: #fff;
-    cursor: pointer;
-    display: block;
-    font-size: 35px;
-}
 
-.carousel-bullet:hover {
-    color: #aaaaaa;
-}
+/* fin code carousel */
 
-#carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
-#carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
-#carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
-    color: #428bca;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #title {
     width: 100%;
@@ -224,25 +172,74 @@ img.ban {
     z-index: 9999;
     text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.33), -1px 0px 2px rgba(255, 255, 255, 0);
 }
-  
+
+
 /*2column protocole*/
 .protocole_container {
-    display:flex;
+    position: relative; /* Le parent direct doit être positionné relativement */
     width: 70%;
     margin: auto;
-
+    display: flex;
+    
+    /* Ajoutez un z-index plus bas que celui de .protocole pour la superposition */
+    z-index: 1;
 }
 
-.protocole {
-    flex: 1;
+.protocole_sportif {
+    position: absolute; /* Position absolue pour superposer sur l'image */
+    top: 50%; 
+    right: 50%; /* Aligné à droite */
+    transform: translate(90%, -40%); 
+    width: 50%; 
+    background-color: rgba(255, 77, 0, 0.9); 
     padding: 20px;
-    text-align: center; /* Centrer le contenu, y compris le bouton */
+    border-top-right-radius: 25px; /* Coins arrondis */
+    border-bottom-right-radius: 25px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Ombre portée */
+    box-sizing: border-box;
+    z-index: 2; /* Plus haut que le z-index de .protocole_container pour superposer */
+    display: flex;
+    flex-direction: column; /* Pour organiser verticalement le titre, le paragraphe et le bouton */
+    align-items: flex-start; /* Centrer les éléments à l'intérieur de .protocole */
+    justify-content: center;
 }
-.protocole h3 {
-    margin-top: 15%;
+.protocole_travail {
+    top: 50%; 
+    right: 50%; /* Aligné à droite */
+    transform: translate(10%); 
+    width: 50%; 
+    height: 50%;
+    background-color: rgba(60, 106, 192, 0.9); /* Couleur de fond avec transparence */
+    padding: 20px;
+    border-top-left-radius: 25px; /* Coins arrondis */
+    border-bottom-left-radius: 25px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Ombre portée */
+    box-sizing: border-box;
+    z-index: 2; /* Plus haut que le z-index de .protocole_container pour superposer */
+    display: flex;
+    flex-direction: column; /* Pour organiser verticalement le titre, le paragraphe et le bouton */
+    align-items: flex-start; /* Centrer les éléments à l'intérieur de .protocole */
+    justify-content: center;
+    margin-top: 10%;
 }
-.protocole p, .protocole h3{
+.protocole_travail h3 {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 100%;
+}
+.protocole_travail p, .protocole_travail h3{
     text-align: center;
+    width: 100%;
+}
+
+.protocole_sportif h3 {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 100%;
+}
+.protocole_sportif p, .protocole_sportif h3{
+    text-align: center;
+    width: 100%;
 }
 
 .btn-abonnement{
@@ -273,7 +270,7 @@ img.ban {
     position: absolute;
     top: 40%;
     left: 30%;
-    transform: translate(-50%, -50%);
+    transform: translate(-40%, -50%);
   
     color: #fff; /* Couleur du texte */
     
@@ -292,7 +289,7 @@ h1, p, button {
 }
 
 button {
-    width: 35%;
+    width: 25%;
     padding: 10px 20px; /* Ajoutez des styles de bouton */
     background-color: #FF4D00; /* Couleur de fond du bouton */
     color: #ffffff; /* Couleur du texte du bouton */
@@ -300,6 +297,7 @@ button {
     border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-weight: 800;
 }
 
 button:hover {
@@ -347,21 +345,11 @@ h2{
     height: auto; /* Maintient le ratio hauteur-largeur de l'image */
 }
 
-
-
-
-
-
-
-
-
-
 .article-details {
     max-width: 90%;
     margin: 0 auto;
     text-align: center;
 }
-
 .article-details .image-container {
     max-width: 100%;
     max-height: 500px;
@@ -378,23 +366,17 @@ h2{
     margin-top : 40px;
     margin-bottom : 60px;
 }
-
 .article-details .image-container img {
     width: 100%;
     height: 100%; /* Ajustez la hauteur à 100% pour remplir le conteneur */
     object-fit: cover; /* Cette propriété garantit que l'image remplit le conteneur */
     object-position: center; /* Cette propriété centre l'image horizontalement et verticalement */
 }
-
-
-
-
 .article-title {
     font-size: 24px;
     font-weight: bold;
     margin: 20px 0;
 }
-
 .article-content {
     font-size: 18px;
     line-height: 1.5;
@@ -430,6 +412,9 @@ h1 {
     cursor: pointer;
     transition: background-color 0.3s ease;
     float: right;
+}
+a.blue{
+    background-color: #3C6AC0;
 }
 
 /* Style général du formulaire */
@@ -486,6 +471,7 @@ input[type="checkbox"] {
 video {
     margin-top : 2%;
     margin-bottom : 4%;
+    border-radius: 25px;
 }
 
 h4{
@@ -494,4 +480,634 @@ h4{
 
 .list_exercice{
     margin : 2%;
+}
+
+
+
+
+.protocole button {
+    /* Styles pour le bouton, assurez-vous qu'il est aligné comme vous le souhaitez */
+    margin-top: 10px; /* Espace entre le texte et le bouton */
+    align-self: flex-start; /* Alignement du bouton à gauche */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+
+    font-family: Arial, sans-serif;
+    border-top: 10px solid #3C6AC0;
+    width: 80%;
+    margin: auto;
+    margin-top: 5%;
+}
+  
+  
+  .footer-column {
+    flex: 1;
+  }
+  
+  .logo-column img {
+    width: 150px;
+    margin-top: 30px;
+}
+  
+  .footer-links {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .footer-links li + li {
+    margin-top: 10px; /* Spacing between vertical list items */
+  }
+  
+  .footer-links a {
+    text-decoration: none;
+    color: #333; /* Your link color */
+    font-size: 16px;
+  }
+  
+  .footer-button {
+    background-color: #FF4D00; /* Your button color */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 20px; /* Rounded corners */
+    font-size: 16px;
+    text-align: center;
+    display: inline-block; /* For proper padding and color */
+    margin-top: 20px; /* To align with the top of the column if needed */
+  }
+  
+
+
+/*MOdal Travail*/
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 1050; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    /* Add more styles for the modal content */
+}
+.modal-dialog {
+    position: relative;
+    margin: 10% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 600px; /* Specify a width for the modal */
+}  
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    border-radius: 25px;
+    border: 1px solid #888;
+    width: 100%;
+}
+.close {
+    color: #000;
+    position: absolute;
+    font-size: 28px;
+    font-weight: bold;
+    left: 30px;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.modal-body {
+    display: flex;
+    justify-content: space-between;
+}
+.modal-left, .modal-right {
+    width: 48%;
+}
+.modal-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the start of the flex container */
+    margin: 20px;
+}
+.modal-left img {
+    margin-right :auto;
+    margin-left: auto;
+}
+.modal-left img, .modal-right img {
+    max-width: 100%; /* Ensure the image does not overflow its container */
+    height: auto; /* Maintain aspect ratio */
+}
+.modal-right img {
+    height: 100%;
+    border-radius: 0 25px 25px 0;
+}
+#protocolSelect {
+    margin-top: 20px; 
+    width: 100%; 
+}
+#validateChoice{
+    width: 40%;
+}
+
+
+/* Ajoutez vos styles pour les éléments Stripe ici */
+.StripeElement {
+box-sizing: border-box;
+height: 40px;
+padding: 10px 12px;
+border: 1px solid transparent;
+border-radius: 4px;
+background-color: white;
+box-shadow: 0 1px 3px 0 #e6ebf1;
+-webkit-transition: box-shadow 150ms ease;
+transition: box-shadow 150ms ease;
+}
+
+        .StripeElement--focus {
+            box-shadow: 0 1px 3px 0 #cfd7df;
+        }
+
+        .StripeElement--invalid {
+            border-color: #fa755a;
+        }
+
+        .StripeElement--webkit-autofill {
+            background-color: #fefde5 !important;
+        }
+
+/*accordean exercices*/
+/* Style de base pour l'accordéon */
+.accordeon {
+    margin: auto;
+    width: 80%;
+    border: 1px solid #3C6AC0;
+    
+}
+.accordeon img {
+    width: 300px;
+    float: left;
+    margin-right: 20px;
+    border-radius: 15px;
+}
+.accordeon img.icon {
+    width: 25px;
+    float: left;
+    border-radius: 0px;
+}
+.accordeon .header {
+    padding: 20px;
+    cursor: pointer;   
+    border-bottom: 1px solid #ccc;
+    height: 200px;   
+}
+.accordeon_details{
+    margin-top: 15px;
+    
+}
+.accordeon .content {
+    padding: 30px;
+    display: none;
+    overflow: hidden;
+}
+.centered {
+    text-align: center;
+}
+
+/* The switch - the box around the slider */
+
+.switch-container{
+    text-align: center;
+    margin: 20px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 10px;
+}
+.switch-container > span {
+    color : #3C6AC0;
+    font-weight: 900;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+  /* Hide default HTML checkbox */
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+input:checked + .slider {
+    background-color:#3C6AC0;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #3C6AC0;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+.slider.round:before {
+    border-radius: 50%;
+}
+
+
+/*admin dashbord*/
+.admin-container {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+}
+.admin-dashboard-header {
+    background-color: #3C6AC0; 
+    padding: 20px;
+    text-align: center;
+}
+.admin-dashboard-header a {
+    text-decoration: none;
+    color: #fff;
+    
+}
+.admin-dashboard-header > h1{
+    
+    color: #fff;
+}
+.admin-stats, .admin-components {
+    margin: 20px 0;
+    padding: 20px;
+    background: #fff;
+    width: 80%;
+    margin: auto;
+}
+.admin-stats p, .admin-stats div, .admin-components {
+    font-weight : 800;
+    text-align : center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.admin-stats li {
+    text-align: center;
+}
+.admin-stats span {
+    color : #FF4D00;
+    font-weight : 800;
+}
+.admin-stats h2, .admin-components h2 {
+    margin-top: 0;
+}
+.admin-stats ul, .admin-components ul {
+    list-style: none;
+    padding: 0;
+}
+.admin-stats ul li, .admin-components ul li {
+    background: #eee;
+    margin: 10px 0;
+    padding: 10px;
+}
+.admin-components a {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    background: #3C6AC0;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+}
+.admin-components a:hover {
+    background: #FF4D00;
+}
+
+.livebar {
+    width: 100%;
+    background-color:  #FF4D00;
+    font-weight : 700;
+    text-align : center; 
+    padding-top : 15px;
+    padding-bottom : 15px;
+}
+.livebar > p > a {
+    width: 100%;
+    background-color:  #FF4D00;
+    color : #fff 
+}
+
+/*style tableau admin idex CRUD*/
+.admin-formview-container {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+.admin-formview-dashboard-header h1 a {
+    color: #333;
+    text-decoration: none;
+}
+.admin-formview-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.admin-formview-table, .admin-formview-table th, .admin-formview-table td {
+    border: 1px solid #ddd;
+}
+.admin-formview-table th, .admin-formview-table td {
+    text-align: left;
+    padding: 8px;
+}
+.admin-formview-table th {
+    background-color: #FF4D00;
+    color: white;
+}
+.admin-formview-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.admin-formview-action-buttons a {
+    display: inline-block;
+    text-decoration: none;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color:#3C6AC0;
+    color: white;
+    font-weight: bold;
+}
+.admin-formview-create-new-button {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #FF4D00;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/*admin show*/
+/* Styles spécifiques pour la vue de détail des exercices */
+.admin-detail-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.admin-detail-header {
+    margin-bottom: 20px;
+}
+
+.admin-detail-header h1 {
+    font-size: 22px;
+    color: #333;
+}
+
+.admin-detail-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-detail-table th, .admin-detail-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.admin-detail-table th {
+    text-align: left;
+    font-weight: bold;
+    color: #555;
+}
+
+.admin-detail-actions {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.admin-detail-actions a {
+    padding: 8px 15px;
+    background-color: #3C6AC0;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.admin-edit-actions{
+    margin-top: 20px;
+    
+}
+
+.admin-edit-actions a {
+    padding: 8px 15px;
+    background-color: #3C6AC0;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+.list_article_img_admin {
+    width : 200px;
+    border-radius : 25px;
+}
+
+/*ne pas prendre en compte le css sur ce form */
+.delete-form {
+    /* Réinitialiser les styles spécifiques du formulaire de suppression */
+    all: unset; /* Attention : 'all: unset' est très puissant et pourrait avoir des effets indésirables, à utiliser avec précaution */
+}
+
+.delete-form * {
+    /* Réinitialiser les styles pour tous les éléments à l'intérieur du formulaire de suppression si nécessaire */
+    all: unset;
+}
+
+/* Ou appliquer des styles spécifiques pour annuler ceux indésirables */
+.delete-form {
+    background: #FF4D00;
+    padding: 8px 15px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/***************************Mobile***********************************/
+/**Accueil**/ 
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo, .menu-icon {
+    display: flex;
+    align-items: center;
+}
+
+.menu-icon {
+    display: none; /* L'icône du menu est cachée par défaut */
+}
+
+/* Styles pour le menu et les éléments du menu */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+/* Media query pour les écrans de moins de 950px */
+@media (max-width: 950px) {
+    .menu-icon {
+        display: flex; /* Affiche l'icône du menu burger en mode mobile */
+        margin-left: 260px;
+    }
+    header {
+        height: 10vh;
+    }
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        width: 100%;
+        top: 60px;
+        left: 0;
+        background: #fff;
+        z-index: 1000;
+        margin-left : 250px;
+    }
+    nav ul li {
+        text-align: center;
+        margin: 10px 0;
+        margin-left : 20px;
+    }
+    nav ul li a {  
+        font-weight: regular; 
+        font-size: 14px;
+    }
+    /* Masquer les éléments non nécessaires en mode mobile */
+    .profile-icon {
+        display: none;
+    }
+    /**bannière***/
+    .overlay-content {
+        position: absolute;
+        top: 50%;
+        left: 40%;
+        width: 90%;
+        transform: translate(-40%, -50%);
+        color: #fff;
+        /* padding: 20px; */
+        border-radius: 5px;
+    }
+    h1 {
+        font-size : 20px;
+        margin-top : 0px;
+    }
+    p {
+        font-size : 13px;
+    }
+    p.para_banniere {
+        margin-bottom: 10px;
+    }
+    button {
+        width: auto;
+        padding: 5px 10px;
+    }
+    .protocole_container {
+        display : block
+    }
+    .carousel {
+        width: 100%; 
+    }
+
+    .protocole_sportif, .protocole_travail {
+        position: initial; 
+        top: 50%; 
+        right: 50%; 
+        transform: none;
+        width : 100%;
+        border-radius : 25px; 
+        margin-top : 20px;
+    }
+    .article {
+        flex-basis: auto;
+    }
+
+/***footer***/
+.logo-column img {
+    width : 80px;
+}
+
+h4 {
+    font-size: 14px;
+}
+
+.footer-links a {
+
+    font-size: 12px;
+}
+
+.footer-column {
+    margin-right: 20px;
+}
+
 }

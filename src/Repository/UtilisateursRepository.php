@@ -39,6 +39,16 @@ class UtilisateursRepository extends ServiceEntityRepository implements Password
         $this->getEntityManager()->flush();
     }
 
+    public function totalPaiementsGeneres()
+    {
+        return $this->createQueryBuilder('u')
+            ->select('SUM(p.prix_protocole) AS totalPaiements')
+            ->join('u.relation', 'p') // Correction ici : 'relation' au lieu de 'protocole'
+            ->getQuery()
+            ->getSingleScalarResult(); // Retourne directement la somme
+    }
+    
+
 //    /**
 //     * @return Utilisateurs[] Returns an array of Utilisateurs objects
 //     */

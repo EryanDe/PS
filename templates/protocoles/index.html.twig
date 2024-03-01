@@ -10,35 +10,65 @@
 
 <h1>Protocole {{protocole.getNomProtocole() }}</h1> 
 
-{% if not app.user %}
+
+
+{# {% if not app.user %}
     <p>Vous n'êtes pas abonné au protocole, veuillez souscrire : </p>
     <a href="{{ path('app_register') }}" class="btn-primary">S'abonner</a>
-{% endif %}
-
+{% endif %} #}
 <h3>DESCRIPTION</h3>
 <p>{{ protocole.getDescriptionProtocole() }} </p> 
 <h3>PRIX</h3>
 <p>Il coûte {{ protocole.getPrixProtocole() }} €</p>
-
-{% if app.user %}
+{% if app.user and app.user.isRegisteredToProtocole(protocole) %}
     <h3>SEMAINE ASSOCIEES</h3>
     <ul>
         {% for exercice in exercices %}
-            {% set semaine = exercice.getSemaines() %}
-            {% if semaine is not null %}
-                <h4>{{ semaine.getTitreSemaine() }}</h4>
-                <p>Date de début: {{ semaine.getDateDebutSemaine()|date('d/m/Y') }}</p>
-             {% endif %}
-            <p class="list_exercice"><b>Exercices liés à la semaine</b></p>
-            <p><b>Titre Exercice :</b> {{ exercice.getTitreExercice() }}</p>
-            <p><b>Durée Exercice :</b>{{ exercice.getDureeExercice() }} min</p>
-            <p><b>Fréquence Exercice :</b>{{ exercice.getFrequenceExercice() }} fois</p>
-            <p><b>Description :</b> {{ exercice.getDescriptionExercice() }} </p>
-            <video  controls loop>
-                <source src="{{ asset('assets/' ~ exercice.getContenuFacileExercice() )}}" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+        <div class="accordeon">
+            <div class="header">
+            <p><b>Titre Exercice :</b> {{ exercice.getTitreExercice() }}</p><br>
+            <img class="ban" src="{{ asset("assets/misenavantexercices.png") }}" alt="Mise en avant exercice">
+            <ul class="accordeon_details" style="list-style: none;">
+                <li><img class="icon" src="{{ asset("assets/repetition.png") }}" alt="repetition" ><b>Exercice avec plusieurs répétitions</b></li>
+                <li style="margin-top: 20px;"><img class="icon" src="{{ asset("assets/verifie.png") }}" alt="verifié"><b>Focalisation genoux</b></li>
+                <li style="margin-top: 20px;"><img class="icon" src="{{ asset("assets/verifie.png") }}" alt="verifié"><b>Détente des ligaments</b></li>
+                <li style="margin-top: 20px;"><img class="icon" src="{{ asset("assets/verifie.png") }}" alt="verifié" ><b>Exercice en deux versions</b></li>
+            </ul>
+            </div>
+            <div class="content">
+                <p><b>Exercice {{ exercice.getId() }}</b></p><br>
+                <p><img class="icon" src="{{ asset("assets/duree.png") }}" alt="Duree" > {{ exercice.getDureeExercice() }} min</p>
+                <p style="margin-top: 20px;">
+                <img class="icon" src="{{ asset("assets/repetition.png") }}" alt="repetition" >Répétez l'exercice {{ exercice.getFrequenceExercice() }} fois
+                </p>
+                <p style="margin-top: 20px; color : #FF4D00;"><b>{{ exercice.getTitreExercice() }}</b> </p><br>
+                <p>{{ exercice.getDescriptionExercice() }} </p>
+            <!-- Ajoutez ici le switch toggle pour chaque exercice -->
+            <div class="switch-container">
+                <span>Facile</span>
+                <label class="switch">
+                    <input type="checkbox" class="difficulty-switch" data-exercice="{{ exercice.getId() }}">
+                    <span class="slider round"></span> 
+                </label>
+                <span>Difficile</span>
+            </div>           
+                <!-- Contenu Facile -->
+                <div id="facile_{{ exercice.getId() }}">
+                    <video controls loop>
+                    <source src="{{ asset('assets/' ~ exercice.getContenuFacileExercice() )}}" type="video/mp4">
+                    Your browser does not support the video tag.
+                    </video>
+                </div>
+                <!-- Contenu Difficile (caché par défaut) -->
+                <div id="difficile_{{ exercice.getId() }}" style="display:none;">
+                    <p><b>Exercice {{ exercice.getContenuDifficileExercice() }}</b></p><br>
+                </div>
+            </div>
+        </div>
         {% endfor %}
     </ul>
+    {% else %}
+    <p>Vous n'êtes pas abonné au protocole, veuillez souscrire : </p>
+    <a href="{{ path('app_register') }}" class="btn-primary">S'abonner</a>
 {% endif %}
 {% endblock %}

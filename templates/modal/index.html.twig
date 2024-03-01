@@ -1,0 +1,48 @@
+
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('css/header.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('JS/script.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="modal" id="protocolModal" style="display:none;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <a type="button" class="close" onclick="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </a>
+      </div>
+      <div class="modal-body">
+        <div class="modal-left">
+            <img src="{{ asset("assets/point_interogation.png") }}" alt="Small Image">
+            <select id="protocolSelect" class="form-control" onchange="checkSelection()">
+          <option value="">Sélectionnez une option</option>
+          <option value="Informatique">Informatique</option>
+          <option value="Médecine">Médecine</option>
+          <option value="Enseignement">Enseignement</option>
+          <option value="Ingénierie">Ingénierie</option>
+          <option value="Architecture">Architecture</option>
+          <option value="Comptabilité">Comptabilité</option>
+          <option value="Design graphique">Design graphique</option>
+          <option value="Psychologie">Psychologie</option>
+          <option value="Droit">Droit</option>
+          <option value="Marketing">Marketing</option>
+        </select>
+
+        <button type="button" class="btn btn-primary" id="validateChoice" disabled>Valider</button>
+        </div>
+        <div class="modal-right">
+            <img src="{{ asset("assets/imgModal.jpg") }}" alt="Large Image">
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+{% endblock %}

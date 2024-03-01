@@ -5,6 +5,7 @@ namespace App\Controller;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Protocoles;
 use App\Entity\Exercices;
+use App\Entity\Semaines;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,6 +25,7 @@ class SportController extends AbstractController
     {
         // Récupérez le protocole avec l'ID
         $protocole = $mr->getRepository(Protocoles::class)->find($protocolId);
+       
     
         // Vérifiez si le protocole existe
         if (!$protocole) {

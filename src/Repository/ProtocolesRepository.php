@@ -21,6 +21,16 @@ class ProtocolesRepository extends ServiceEntityRepository
         parent::__construct($registry, Protocoles::class);
     }
 
+    public function countUsersByProtocole()
+{
+    return $this->createQueryBuilder('p')
+        ->select('p.nom_protocole AS protocole', 'COUNT(u.id) AS nombreUtilisateurs')
+        ->leftJoin('p.utilisateurs', 'u') 
+        ->groupBy('p.id')
+        ->getQuery()
+        ->getResult();
+}
+
 //    /**
 //     * @return Protocoles[] Returns an array of Protocoles objects
 //     */

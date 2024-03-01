@@ -19,10 +19,14 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+            ->add('email', null, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter an email address',
+                    ]),
+                ],
+            ])
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
@@ -32,32 +36,82 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],
             ])
-            ->add('nom_utilisateur')
-            ->add('prenom_utilisateur')
-            ->add('telephone_utilisateur')
-            ->add('numero_rue_utilisateur')
-            ->add('rue_utilisateur')
-            ->add('ville_utilisateur')
-            ->add('code_postal_utilisateur')
-            ->add('pays_utilisateur')
+            ->add('nom_utilisateur', null, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a username',
+                    ]),
+                ],
+            ])
+            ->add('prenom_utilisateur', null, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a first name',
+                    ]),
+                ],
+            ])
+            ->add('telephone_utilisateur', null, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a phone number',
+                    ]),
+                ],
+            ])
+            ->add('numero_rue_utilisateur', null, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a street number',
+                    ]),
+                ],
+            ])
+            ->add('rue_utilisateur', null, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a street name',
+                    ]),
+                ],
+            ])
+            ->add('ville_utilisateur', null, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a city',
+                    ]),
+                ],
+            ])
+            ->add('code_postal_utilisateur', null, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a postal code',
+                    ]),
+                ],
+            ])
+            ->add('pays_utilisateur', null, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Please enter a country',
+                    ]),
+                ],
+            ])
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
                     ]),
+                    new NotBlank([
+                        'message' => 'You should agree to our terms.',
+                        'groups' => ['registration'],
+                    ]),
                 ],
-                
             ])
             ->add('relation', EntityType::class, [
                 'class' => Protocoles::class,
-                'choice_label' => 'nom_protocole', // Le champ à afficher dans la liste déroulante
-                'required' => false, // Si vous souhaitez le rendre facultatif
+                'choice_label' => 'nom_protocole',
+                'required' => false,
             ]);
             
     }

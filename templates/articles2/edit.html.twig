@@ -1,13 +1,26 @@
-{% extends 'base.html.twig' %}
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{asset('css/header.css')}}">
+{% endblock %}
 
-{% block title %}Edit Articles{% endblock %}
+{% block javascripts %}
+        <script src="{{asset('JS/script.js')}}"> </script>
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Articles</h1>
+<div class="livebar">
+        <p><a href="{{ path('app_accueil') }}" target ="blank">Accéder au site</a></p>
+</div>
 
+<div class="admin-container">
+    <div class="admin-dashboard-header">
+        <h1><a href="{{ path('app_admin') }}">Tableau de bord</a></h1>
+</div>
+    <h1>Edit Articles</h1>
+   
     {{ include('articles2/_form.html.twig', {'button_label': 'Update'}) }}
 
+<div class="admin-edit-actions">    
     <a href="{{ path('app_articles2_index') }}">back to list</a>
-
-    {{ include('articles2/_delete_form.html.twig') }}
+    <div style="display:inline-block;">{{ include('articles2/_delete_form.html.twig') }}</div>
+</div> 
 {% endblock %}

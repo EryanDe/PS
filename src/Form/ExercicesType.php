@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Exercices;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,8 +19,24 @@ class ExercicesType extends AbstractType
             ->add('etat_exercice')
             ->add('description_exercice')
             ->add('materiel_exercice')
-            ->add('contenu_facile_exercice')
-            ->add('contenu_difficile_exercice')
+            ->add('contenu_facile_exercice', TextareaType::class, [
+                'label' => 'Contenu facile',
+                // Autres options comme 'required'
+                'attr' => [
+                    'style' => 'height: 200px;width: 100%;',
+                    // Ajoutez votre style ici
+                    // Vous pouvez ajouter d'autres attributs ici si nécessaire
+                ],
+            ])
+            ->add('contenu_difficile_exercice', TextareaType::class, [
+                'label' => 'Contenu facile',
+                // Autres options comme 'required'
+                'attr' => [
+                    'style' => 'height: 200px;width: 100%;',
+                    // Ajoutez votre style ici
+                    // Vous pouvez ajouter d'autres attributs ici si nécessaire
+                ],
+            ])
             ->add('protocoles')
             ->add('semaines')
         ;

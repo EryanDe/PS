@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 #[Route('/admin/exercices')]
 class ModificationsExercicesController extends AbstractController
 {
@@ -78,4 +79,11 @@ class ModificationsExercicesController extends AbstractController
 
         return $this->redirectToRoute('app_modifications_exercices_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
+
+    
+
+
 }

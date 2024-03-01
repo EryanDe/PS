@@ -2,6 +2,7 @@
 
 {% block title %}Register{% endblock %}
 
+
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
@@ -12,23 +13,110 @@
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.email) }}
-    {{ form_row(registrationForm.plainPassword, {
-        label: 'Password'
+    {{ form_row(registrationForm.email, {
+        'attr': {'required': 'required', 'type': 'email'}
     }) }}
-    {{ form_row(registrationForm.nom_utilisateur) }}
-    {{ form_row(registrationForm.prenom_utilisateur) }}
-    {{ form_row(registrationForm.telephone_utilisateur) }}
-    {{ form_row(registrationForm.numero_rue_utilisateur) }}
-    {{ form_row(registrationForm.rue_utilisateur) }}
-    {{ form_row(registrationForm.ville_utilisateur) }}
-    {{ form_row(registrationForm.code_postal_utilisateur) }}
-    {{ form_row(registrationForm.pays_utilisateur) }}
-    {{ form_row(registrationForm.agreeTerms) }}
-    {{ form_row(registrationForm.relation) }} 
+    {{ form_row(registrationForm.plainPassword, {
+        'label': 'Password',
+        'attr': {'required': 'required', 'minlength': 8}
+    }) }}
+    {{ form_row(registrationForm.nom_utilisateur, {
+        'attr': {'required': 'required'}
+    }) }}
+    {{ form_row(registrationForm.prenom_utilisateur, {
+        'attr': {'required': 'required'}
+    }) }}
+    {{ form_row(registrationForm.telephone_utilisateur, {
+        'attr': {'required': 'required', 'type': 'tel', 'pattern': '[0-9]{10}'}
+    }) }}
+    {{ form_row(registrationForm.numero_rue_utilisateur, {
+        'attr': {'required': 'required'}
+    }) }}
+    {{ form_row(registrationForm.rue_utilisateur, {
+        'attr': {'required': 'required'}
+    }) }}
+    {{ form_row(registrationForm.ville_utilisateur, {
+        'attr': {'required': 'required'}
+    }) }}
+    {{ form_row(registrationForm.code_postal_utilisateur, {
+        'attr': {'required': 'required', 'pattern': '[0-9]{5}'}
+    }) }}
+    {{ form_row(registrationForm.pays_utilisateur, {
+        'attr': {'required': 'required'}
+    }) }}
+    {{ form_row(registrationForm.agreeTerms, {
+        'attr': {'required': 'required'}
+    }) }}
+    {{ form_row(registrationForm.relation) }}
 
+    <div id="card-element">
+    <!-- Élément Stripe ira ici -->
+    </div>
+    <div id="card-errors" role="alert"></div>
     <button type="submit" class="btn">Register</button>
-    
     {{ form_end(registrationForm) }}
-    
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        // Créez une instance de Stripe
+        var stripe = Stripe('pk_test_51NyBAKCgmycShxJlmT8dHupyfxTpFhjuAqlXhMrYR5T69YqAZTLPGczbchr8NhWxRCOCLaituuVbTv6l2ADD0qG400wioS6tX9');
+        var elements = stripe.elements();
+        
+        // Personnalisez vos éléments Stripe
+        var style = {
+            base: {
+                color: "#32325d",
+            }
+        };
+
+        // Créez un élément de carte et montez-le dans le DOM
+        var card = elements.create('card', {style: style});
+        card.mount('#card-element');
+
+        // Gérez la validation en temps réel des erreurs de la carte
+        card.addEventListener('change', function(event) {
+            var displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+
+        // Gérez la soumission du formulaire
+    var form = document.querySelector('form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        stripe.createPaymentMethod({
+            type: 'card',
+            card: card,
+            billing_details: {
+                // Incluez ici des détails de facturation si vous les avez
+                email: document.getElementById('registration_form_email').value,
+                // Ajoutez d'autres champs de détails de facturation au besoin
+            },
+        }).then(function(result) {
+            if (result.error) {
+                // Informez l'utilisateur s'il y a une erreur
+                var errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+            } else {
+                // Envoyez l'ID de la méthode de paiement à votre serveur
+                paymentMethodHandler(result.paymentMethod.id);
+            }
+        });
+    });
+
+    function paymentMethodHandler(paymentMethodId) {
+        // Insérez l'ID de la méthode de paiement dans le formulaire afin qu'il soit soumis au serveur
+        var hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'paymentMethodId');
+        hiddenInput.setAttribute('value', paymentMethodId);
+        form.appendChild(hiddenInput);
+
+        // Soumettez le formulaire
+        form.submit();
+    }
+    </script>
 {% endblock %}

@@ -1,0 +1,82 @@
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{asset('css/header.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+        <script src="{{asset('JS/script.js')}}"> </script>
+{% endblock %}
+
+{% block body %}
+<div class="livebar">
+        <p><a href="{{ path('app_accueil') }}" target ="blank">Accéder au site</a></p>
+</div>
+
+<div class="admin-container">
+    <div class="admin-dashboard-header">
+        <h1><a href="{{ path('app_admin') }}">Tableau de bord</a></h1>
+</div>
+    <div class="admin-detail-container">
+        <div class="admin-detail-header">
+            <h1>Utilisateurs</h1>
+        </div>
+
+        <table class="admin-detail-table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ utilisateur.id }}</td>
+                </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ utilisateur.email }}</td>
+            </tr>
+            <tr>
+                <th>Rôles</th>
+                <td>{{ utilisateur.roles ? utilisateur.roles|json_encode : '' }}</td>
+            </tr>
+            
+            <tr>
+                <th>Nom</th>
+                <td>{{ utilisateur.nomUtilisateur }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ utilisateur.prenomUtilisateur }}</td>
+            </tr>
+            <tr>
+                <th>Numero de rue</th>
+                <td>{{ utilisateur.numeroRueUtilisateur }}</td>
+            </tr>
+            <tr>
+                <th>Rue</th>
+                <td>{{ utilisateur.rueUtilisateur }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ utilisateur.villeUtilisateur }}</td>
+            </tr>
+            <tr>
+                <th>Code postal</th>
+                <td>{{ utilisateur.codePostalUtilisateur }}</td>
+            </tr>
+            <tr>
+                <th>Pays</th>
+                <td>{{ utilisateur.paysUtilisateur }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ utilisateur.telephoneUtilisateur }}</td>
+            </tr>
+            <tr>
+                <th>Vérifié</th>
+                <td>{{ utilisateur.isVerified ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="admin-detail-actions">
+            <a href="{{ path('app_utilisateurs_index') }}">Retour à la liste</a>
+            <a href="{{ path('app_utilisateurs_edit', {'id': utilisateur.id}) }}">Modifier</a>
+            <div style="display:inline-block;">{{ include('utilisateurs/_delete_form.html.twig') }}</div>
+        </div>
+{% endblock %}

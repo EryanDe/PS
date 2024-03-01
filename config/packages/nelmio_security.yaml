@@ -1,0 +1,15 @@
+nelmio_security:
+    # prevents framing of the entire site
+    clickjacking:
+        paths:
+            '^/': 'DENY'  # Interdit le rendu de la page dans un frame ou iframe pour toutes les routes
+    content_type:
+        nosniff: true  # Empêche le navigateur de faire du MIME type sniffing
+    xss_protection:
+        enabled: true  # Active la protection XSS du navigateur
+        mode_block: true  # Bloque la page si une attaque XSS est détectée
+    referrer_policy:
+        enabled: true
+        policies:
+            - 'no-referrer'
+            - 'strict-origin-when-cross-origin'

@@ -10,5 +10,11 @@ app_afficher_donnees:
     controller: App\Controller\MonController::afficherDonnees
 
 
+# inscription_succes:
+#     path: '/inscription_success'
+#     controller: 'App\Controller\RegistrationController::inscriptionSuccess'
+    # methods: ['GET']    
+
+
 
 

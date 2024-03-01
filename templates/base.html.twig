@@ -5,8 +5,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}{% endblock %}</title>
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="livebar">
+                <p><a href="{{ path('app_admin') }}" target ="blank">Accéder au tableau de bord</a></p>
+            </div>
+        {% endif %}
         {% include 'Composer/header.html.twig'%}
-     
+        
         {% block stylesheets %}
         <link rel="stylesheet" href="{{asset('css/header.css')}}">
         {% endblock %}
@@ -14,8 +19,13 @@
         {% block javascripts %}
         <script src="{{asset('JS/script.js')}}"> </script>
         {% endblock %}
+         
+        
     </head>
     <body>
         {% block body %}{% endblock %}
+       
+    
     </body>
+    {% include 'Composer/footer.html.twig'%}
 </html>

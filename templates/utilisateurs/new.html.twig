@@ -1,0 +1,24 @@
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{asset('css/header.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+        <script src="{{asset('JS/script.js')}}"> </script>
+{% endblock %}
+
+{% block body %}
+<div class="livebar">
+        <p><a href="{{ path('app_accueil') }}" target ="blank">Accéder au site</a></p>
+</div>
+
+<div class="admin-container">
+    <div class="admin-dashboard-header">
+        <h1><a href="{{ path('app_admin') }}">Tableau de bord</a></h1>
+</div>
+    <h1>Create new Utilisateurs</h1>
+
+    {{ include('utilisateurs/_form.html.twig') }}
+<div class="admin-edit-actions">
+    <a href="{{ path('app_utilisateurs_index') }}">back to list</a>
+</div>    
+{% endblock %}

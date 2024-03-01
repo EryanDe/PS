@@ -1,45 +1,51 @@
-{% extends 'base.html.twig' %}
+{% block stylesheets %}
+        <link rel="stylesheet" href="{{asset('css/header.css')}}">
+{% endblock %}
 
-{% block title %}Articles index{% endblock %}
+{% block javascripts %}
+        <script src="{{asset('JS/script.js')}}"> </script>
+{% endblock %}
 
 {% block body %}
-    <h1>Articles index</h1>
+<div class="livebar">
+        <p><a href="{{ path('app_accueil') }}" target ="blank">Accéder au site</a></p>
+</div>
 
-    <table class="table">
+<div class="admin-container">
+    <div class="admin-dashboard-header">
+        <h1><a href="{{ path('app_admin') }}">Tableau de bord</a></h1>
+</div>
+<div class="admin-formview-container">
+    <h2>Articles index</h2>
+    <a href="{{ path('app_articles2_new') }}" class="admin-formview-create-new-button">+</a>
+    <table class="admin-formview-table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Image_article</th>
-                <th>Titre_article</th>
-                <th>Contenu_article</th>
-                <th>Date_creation_article</th>
-                <th>Source_article</th>
-                <th>Auteur_article</th>
-                <th>actions</th>
+                <th>Titre </th>
+                <th>Date de création</th>
+                <th>Auteur de l'article</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for article in articles %}
             <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.imageArticle }}</td>
                 <td>{{ article.titreArticle }}</td>
-                <td>{{ article.contenuArticle }}</td>
                 <td>{{ article.dateCreationArticle ? article.dateCreationArticle|date('Y-m-d') : '' }}</td>
-                <td>{{ article.sourceArticle }}</td>
                 <td>{{ article.auteurArticle }}</td>
-                <td>
-                    <a href="{{ path('app_articles2_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('app_articles2_edit', {'id': article.id}) }}">edit</a>
+                <td class="admin-formview-action-buttons">
+                    <a href="{{ path('app_articles2_show', {'id': article.id}) }}">Afficher</a>
+                    <a href="{{ path('app_articles2_edit', {'id': article.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="4">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_articles2_new') }}">Create new</a>
+    
+</div>
 {% endblock %}

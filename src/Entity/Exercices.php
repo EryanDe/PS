@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Entity;
-
 use App\Repository\ExercicesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
